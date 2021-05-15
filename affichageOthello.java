@@ -60,29 +60,19 @@ public class affichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = ' ';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = ' ';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(col!= (tabPionJeu[0].length-1) && col!=0){
-					if(!(this.tabPionJeu[ligne][col-1]==3||this.tabPionJeu[ligne][col-1]==4)){ 
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}	
-					if(!(this.tabPionJeu[ligne][col+1]==3||this.tabPionJeu[ligne][col+1]==4)){
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}
-				}else{
+				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
-					tabAffichageJeu[l][newCoord[1]-1] = '|';
+				}
+				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
+					tabAffichageJeu[l][newCoord[1]+2] = '|';
 				}
 			}
 			for(int c = newCoord[1]-1; c<=newCoord[1]+2; c++){
-				if(ligne!= (tabPionJeu.length-1) && ligne!=0){
-					if(!(this.tabPionJeu[ligne-1][col]==3||this.tabPionJeu[ligne-1][col]==4)){
-						tabAffichageJeu[newCoord[0]-1][c] = '-';
-					}
-					if(!(this.tabPionJeu[ligne+1][col]==3||this.tabPionJeu[ligne+1][col]==4)){
-						tabAffichageJeu[newCoord[0]+2][c] = '-';
-					}
-				}else{
+				if(tabAffichageJeu[newCoord[0]-1][c] != '#'){
 					tabAffichageJeu[newCoord[0]-1][c] = '-';
-					tabAffichageJeu[newCoord[0]-1][c] = '-';
+				}
+				if(tabAffichageJeu[newCoord[0]+2][c] != '#'){
+					tabAffichageJeu[newCoord[0]+2][c] = '-';
 				}
 			}
 		
@@ -99,32 +89,21 @@ public class affichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = 'N';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = 'N';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(col!= (tabPionJeu[0].length-1) && col!=0){
-					if(!(this.tabPionJeu[ligne][col-1]==3||this.tabPionJeu[ligne][col-1]==4)){ 
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}	
-					if(!(this.tabPionJeu[ligne][col+1]==3||this.tabPionJeu[ligne][col+1]==4)){
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}
-				}else{
+				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
-					tabAffichageJeu[l][newCoord[1]-1] = '|';
+				}
+				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
+					tabAffichageJeu[l][newCoord[1]+2] = '|';
 				}
 			}
 			for(int c = newCoord[1]-1; c<=newCoord[1]+2; c++){
-				if(ligne!= (tabPionJeu.length-1) && ligne!=0){
-					if(!(this.tabPionJeu[ligne-1][col]==3||this.tabPionJeu[ligne-1][col]==4)){
-						tabAffichageJeu[newCoord[0]-1][c] = '-';
-					}
-					if(!(this.tabPionJeu[ligne+1][col]==3||this.tabPionJeu[ligne+1][col]==4)){
-						tabAffichageJeu[newCoord[0]+2][c] = '-';
-					}
-				}else{
-					tabAffichageJeu[newCoord[0]-1][c] = '-';
+				if(tabAffichageJeu[newCoord[0]-1][c] != '#'){
 					tabAffichageJeu[newCoord[0]-1][c] = '-';
 				}
+				if(tabAffichageJeu[newCoord[0]+2][c] != '#'){
+					tabAffichageJeu[newCoord[0]+2][c] = '-';
+				}
 			}
-		
 		}
 		/**
 		 *Ici, c'est la méthode qui permet de remplacer une case du tableau par un pion blanc, symboliser par un B.On remet aussi les murs à l'origine dans le cas où l'on remplace
@@ -138,31 +117,22 @@ public class affichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = 'B';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = 'B';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(col!= (tabPionJeu[0].length-1) && col!=0){
-					if(!(this.tabPionJeu[ligne][col-1]==3||this.tabPionJeu[ligne][col-1]==4)){ 
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}	
-					if(!(this.tabPionJeu[ligne][col+1]==3||this.tabPionJeu[ligne][col+1]==4)){
-						tabAffichageJeu[l][newCoord[1]-1] = '|';
-					}
-				}else{
+				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
-					tabAffichageJeu[l][newCoord[1]-1] = '|';
+				}
+				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
+					tabAffichageJeu[l][newCoord[1]+2] = '|';
 				}
 			}
 			for(int c = newCoord[1]-1; c<=newCoord[1]+2; c++){
-				if(ligne!= (tabPionJeu.length-1) && ligne!=0){
-					if(!(this.tabPionJeu[ligne-1][col]==3||this.tabPionJeu[ligne-1][col]==4)){
-						tabAffichageJeu[newCoord[0]-1][c] = '-';
-					}
-					if(!(this.tabPionJeu[ligne+1][col]==3||this.tabPionJeu[ligne+1][col]==4)){
-						tabAffichageJeu[newCoord[0]+2][c] = '-';
-					}
-				}else{
-					tabAffichageJeu[newCoord[0]-1][c] = '-';
+				if(tabAffichageJeu[newCoord[0]-1][c] != '#'){
 					tabAffichageJeu[newCoord[0]-1][c] = '-';
 				}
+				if(tabAffichageJeu[newCoord[0]+2][c] != '#'){
+					tabAffichageJeu[newCoord[0]+2][c] = '-';
+				}
 			}
+		
 		}
 		/**
 		 *Ici, c'est la méthode qui permet de remplacer une case du tableau par un pion noir, symboliser par un N. Mais en plus, c'est une case avec un
