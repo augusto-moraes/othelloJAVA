@@ -230,5 +230,13 @@ public class AffichageOthello{
 				System.out.println();
 			}
 		}
+
+		public void tourBlanc() {
+			System.out.println("Tour du joueur blanc: ");
+		}
+
+		public void tourNoir() {
+			System.out.println("Tour du joueur noir: ");
+		}
 				 
 }
