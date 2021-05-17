@@ -5,15 +5,15 @@ public class JeuOthello {
     private int [][] plateau ; 
     
     public JeuOthello (int nbrLB){
-		this.nbrlignes = nbrLB % 2 ? nbrLB + 1 : nbrLB; 
-		this.nbrcolonnes= nbrLB % 2 ? nbrLB + 1 : nbrLB; 
+		this.nbrlignes = nbrLB; 
+		this.nbrcolonnes= nbrLB; 
 		
 		int [][] plateau = new int [nbrLB][nbrLB] ;
 	}
 
 	public JeuOthello (int nbrlignes, int nbrcolonnes){
-		this.nbrlignes= nbrlignes % 2 ? nbrlignes + 1 : nbrlignes;
-		this.nbrcolonnes= nbrcolonnes % 2 ? nbrcolonnes + 1 : nbrcolonnes;
+		this.nbrlignes= nbrlignes;
+		this.nbrcolonnes= nbrcolonnes;
 		
 		int [][] plateau = new int [nbrlignes][nbrcolonnes] ;
 	}
