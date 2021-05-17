@@ -232,11 +232,11 @@ public class AffichageOthello{
 		}
 
 		public void tourBlanc() {
-			System.out.println("Tour du joueur blanc: ");
+			System.out.print("Tour du joueur blanc: ");
 		}
 
 		public void tourNoir() {
-			System.out.println("Tour du joueur noir: ");
+			System.out.print("Tour du joueur noir: ");
 		}
 				 
 }

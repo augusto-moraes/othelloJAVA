@@ -49,18 +49,36 @@ public class JeuOthello {
 
 		if(moves % 2 == 0) {
 			print.tourBlanc();
-
+			while(!this.poserPion(2));
 		} else {
 			print.tourNoir();
+			while(!this.poserPion(1));
 		}
+		this.nextTour();
+	}
+
+	public void nextTour() {
+		moves++;
+		print.affichagePlateau();
+		this.play();
 	}
 	
-	public void poserPion (int joueur, int x, int y) { 
-		if (plateau[x][y] == 0){ ; 
-			plateau[x][y] = joueur ; 
+	public boolean poserPion (int joueur, int x, int y) { 
+		if (plateau[x][y] == 0){  
+			plateau[x][y] = joueur;
+			return true;
 		} else { 
-			System.out.println("Erreur: Impossibilité de poser pion " + joueur + " dans la case (" + x + ", " + y + ")");
+			System.out.print("Erreur: Impossibilité de poser pion " + joueur + " dans la case (" + x + "," + y + ")\nVeuillez essayer une autre case: ");
+			return false;
 		}
+	}
+
+	public boolean poserPion (int joueur) { 
+		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		int x = scanner.nextInt();
+		int y = scanner.nextInt();
+
+		return this.poserPion(joueur, x, y);
 	}
 	
 	public void changerCouleur (int x, int y) {
