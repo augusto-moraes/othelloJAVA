@@ -174,6 +174,7 @@ public class affichageOthello{
 				tabAffichageJeu[newCoord[0]+2][c] = '#';
 			}
 		}
+		
 		/**
 		 *Cette méthode permet de placer dans le tableau d'affichage, le bon type de case. En effet, le tableau fournit par la classe Jeu founit à 
 		 * cette classe un tableau d'entier où une case représente un type de pion. Un case 0 signifie quelle est vide, 1 est une case avec un pion noir
