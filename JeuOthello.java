@@ -38,7 +38,7 @@ public class JeuOthello {
 		if (plateau[x][y] == 0){ ; 
 			plateau[x][y] = Couleurjoueur ; 
 		} else { 
-			SSystem.out.println("Erreur: Impossibilité de poser pion " + Couleurjoueur + " dans la case (" + x + ", " + y + ")");
+			System.out.println("Erreur: Impossibilité de poser pion " + Couleurjoueur + " dans la case (" + x + ", " + y + ")");
 		}
 	}
 	
