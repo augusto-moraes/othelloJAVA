@@ -6,9 +6,6 @@ public class Joueur {
 		this.couleur = couleur ;
 	}
 	
-	Joueur joueurnoir = new Joueur (1) ; 
+	Joueur joueurnoir = new Joueur (1); 
 	Joueur joueurblanc = new Joueur (2) ; 
-	
-	 
-   
-
+}	 

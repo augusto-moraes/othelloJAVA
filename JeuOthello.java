@@ -1,16 +1,21 @@
 public class JeuOthello {
     // Propriétés du tableau (taille)
-    private int nbrlignes ; // ne rentrer que des nombres impairs 
+    private int nbrlignes ; 
     private int nbrcolonnes ;
     private int [][] plateau ; 
     
-    
+    public JeuOthello (int nbrLB){
+		this.nbrlignes = nbrLB; 
+		this.nbrcolonnes= nbrLB; 
+		
+		int [][] plateau = new int [nbrLB][nbrLB] ;
+	}
+
 	public JeuOthello (int nbrlignes, int nbrcolonnes){
-		this.nbrlignes= nbrlignes ; 
-		this.nbrcolonnes= nbrcolonnes ; 
+		this.nbrlignes= nbrlignes;
+		this.nbrcolonnes= nbrcolonnes;
 		
 		int [][] plateau = new int [nbrlignes][nbrcolonnes] ;
-		
 	}
 
 	public void DebutPartie() {
@@ -33,7 +38,7 @@ public class JeuOthello {
 		if (plateau[x][y] == 0){ ; 
 			plateau[x][y] = Couleurjoueur ; 
 		} else { 
-			System.out.println("erreur"); 
+			System.out.println("Erreur: Impossibilité de poser pion " + Couleurjoueur + " dans la case (" + x + ", " + y + ")");
 		}
 	}
 	

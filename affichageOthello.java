@@ -1,11 +1,11 @@
-public class affichageOthello{
+public class AffichageOthello{
 		private int[][] tabPionJeu;
 		private char[][] tabAffichageJeu;
 		/**
 		 *ici, c'est la déclaration du constructeur qui permet d'afficher le jeu sur l'interface textuelle. On entre en paramètre un tableau 2D qui
 		 * vient de la classe jeu et dont chaque case représente un type de pion.
 		 */
-		public affichageOthello(int[][] tabPionJeu){		
+		public AffichageOthello(int[][] tabPionJeu){		
 			this.tabPionJeu = tabPionJeu;
 			int[] taille = this.convertisseurTaillesTableaux(tabPionJeu.length, tabPionJeu[0].length);
 			tabAffichageJeu = new char[taille[0]][taille[1]];
