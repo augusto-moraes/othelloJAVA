@@ -1,15 +1,27 @@
 public class AffichageOthello{
 		private int[][] tabPionJeu;
 		private char[][] tabAffichageJeu;
+		private int[][] ancienTabPionJeu;
 		/**
 		 *ici, c'est la déclaration du constructeur qui permet d'afficher le jeu sur l'interface textuelle. On entre en paramètre un tableau 2D qui
 		 * vient de la classe jeu et dont chaque case représente un type de pion.
 		 */
 		public AffichageOthello(int[][] tabPionJeu){		
 			this.tabPionJeu = tabPionJeu;
+			ancienTabPionJeu= new int[tabPionJeu.length][tabPionJeu[1].length];
 			int[] taille = this.convertisseurTaillesTableaux(tabPionJeu.length, tabPionJeu[0].length);
 			tabAffichageJeu = new char[taille[0]][taille[1]];
+			
+			for(int ligne = 0; ligne<tabPionJeu.length; ligne++){
+				for(int col = 0; col<tabPionJeu[ligne].length;col++){
+					ancienTabPionJeu[ligne][col] = tabPionJeu[ligne][col];
+				}
+			}
 			this.dessinplateau();
+		}
+		
+		public void setTabAffichage(int[][] nouveauTabAAfficher){
+			this.tabPionJeu = nouveauTabAAfficher;
 		}
 		/**
 		 *Cette méthode me permet, à partir de la taille du tableu de jeu que je récupère, de définir la taille du tableau qui sert à 
@@ -60,7 +72,8 @@ public class AffichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = ' ';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = ' ';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
+				//if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
+				if(col> 0 && ancienTabPionJeu[ligne][col-1] != 4 && ancienTabPionJeu[ligne][col-1] != 3 ){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
 				}
 				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
@@ -219,6 +232,13 @@ public class AffichageOthello{
 				}
 			}
 		}
+		public void sauvegardeAncienTableau(){
+			for(int ligne = 0; ligne<tabPionJeu.length; ligne++){
+				for(int col = 0; col<tabPionJeu[ligne].length;col++){	
+					ancienTabPionJeu[ligne][col] = tabPionJeu[ligne][col];
+				}
+			}
+		}
 		/**
 		 *Cette méthode est celle qui affiche le plateau de jeu de façon textuel. 
 		 */
@@ -230,6 +250,7 @@ public class AffichageOthello{
 				}
 				System.out.println();
 			}
+			this.sauvegardeAncienTableau();
 		}
 				 
 }
