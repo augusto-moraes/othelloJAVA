@@ -30,8 +30,8 @@ public class AffichageOthello{
 		 */
 		public int[] convertisseurTaillesTableaux(int ligne, int col){
 				int[] res = {0,0};
-				res[0] = (ligne*3)+1;
-				res[1] = (col*3)+1;
+				res[0] = (ligne*3)+3;
+				res[1] = (col*3)+3;
 				return res;
 		}
 		/** Cette méthode permet de convertir les coordonnées du tableau 8*8 en coordonnées du tableau d'affichage 
@@ -40,7 +40,7 @@ public class AffichageOthello{
 		 * permet de simplifier la pose des pions dans les cases
 		 */
 		public int[] convertisseurCoordonnees(int coorX , int coorY){
-			int[] res = {1,1};
+			int[] res = {3,3};
 			for(int i = 0; i<coorX; i++){
 				res[0] = res[0]+3;
 			}
@@ -221,15 +221,26 @@ public class AffichageOthello{
 		 *Cette méthode est celle qui dessine le plateau de jeu vie de façon textuelle. Ainsi, toute les cases sont vides.
 		 */
 		public void dessinplateau(){
-			for(int ligne = 0; ligne<tabAffichageJeu.length; ligne = ligne + 3){
-				for(int col = 0; col<tabAffichageJeu[ligne].length;col++){
+			for(int ligne = 2; ligne<tabAffichageJeu.length; ligne = ligne + 3){
+				for(int col = 2; col<tabAffichageJeu[ligne].length;col++){
 					tabAffichageJeu[ligne][col] = '-';
 				}
 			}
-			for(int col = 0; col<tabAffichageJeu[0].length; col = col + 3){
-				for(int ligne = 0; ligne<tabAffichageJeu.length;ligne++){
+			for(int col = 2; col<tabAffichageJeu[0].length; col = col + 3){
+				for(int ligne = 2; ligne<tabAffichageJeu.length;ligne++){
 					tabAffichageJeu[ligne][col] = '|';
 				}
+			}
+			int i = 1;
+			int radix = 10;
+			for(int ligne = 3; ligne<tabAffichageJeu.length;ligne = ligne+ 3){
+				tabAffichageJeu[ligne][1] =  Character.forDigit(i , radix);
+				i++;
+			}
+			int j = 1;
+			for(int col = 3; col<tabAffichageJeu[0].length; col = col + 3){
+				tabAffichageJeu[1][col] =  Character.forDigit(j , radix);
+				j++;
 			}
 		}
 		public void sauvegardeAncienTableau(){
