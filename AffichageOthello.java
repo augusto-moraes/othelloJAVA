@@ -11,6 +11,12 @@ public class AffichageOthello{
 			ancienTabPionJeu= new int[tabPionJeu.length][tabPionJeu[1].length];
 			int[] taille = this.convertisseurTaillesTableaux(tabPionJeu.length, tabPionJeu[0].length);
 			tabAffichageJeu = new char[taille[0]][taille[1]];
+
+			for(int i=0;i<taille[0];i++) {
+				for(int j=0; j<taille[1]; j++) {
+					tabAffichageJeu[i][j] = ' ';
+				}
+			}
 			
 			for(int ligne = 0; ligne<tabPionJeu.length; ligne++){
 				for(int col = 0; col<tabPionJeu[ligne].length;col++){
