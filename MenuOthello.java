@@ -5,6 +5,7 @@ public class MenuOthello{
 	 * il y a 4 menus : jouer, options, régles, scores. Elle se base sur un tableau 2D qui affiche le menu
 	 */
 	private char[][] tabAffichageMenu;
+	private JeuOthello jeu;
 	
 	public MenuOthello(){
 		this.tabAffichageMenu = new char[40][71];
@@ -204,6 +205,24 @@ public class MenuOthello{
 			
 	}
 	/**
+	 *Cette méthode permet d'inscrire dans le tableau d'affichage le menu Exit
+	 */
+	public void selection5(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ',' ','5','.',' ','S','o','r','t','i','r',' ',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 15;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	/**
 	 *Cette méthode permet d'inscrire dans le tableau d'affichage le contour en tiret qui définie l'encadrement du menu
 	 */
 	public void contour(){
@@ -219,22 +238,22 @@ public class MenuOthello{
 	/**
 	 *Cette méthode permet d'afficher l'ensemble du menu principale.
 	 */
-	public void orientationMenu(){
+	public boolean orientationMenu(){
 		Scanner saisieUtilisateur = new Scanner(System.in);
-		System.out.println("Dans quel menu vous voulez vous aller ?");
+		System.out.println("Choisissez une option:");
 		int ent = saisieUtilisateur.nextInt();
-		if(ent > 4){
-			System.out.println("T'as un QI négatif ou quoi?");
-			this.affichageMenuPrincipale();
-		}else if(ent == 1){
-			
+		if(ent == 1){
+			// to implement: choisir la taille du plateau
+			this.jeu = new JeuOthello(8);
+			this.jeu.startGame();
 		}else if(ent == 2){
 			this.menuOption();
 		}else if(ent == 3){
 			this.menuRegle();
-		}else{
+		}else if(ent == 4){
 			this.menuScore();
 		}
+		return ent < 4;
 	}
 	public void menuScore(){
 		System.out.println("               TOP 3 des parties les plus rapides  :             ");
@@ -289,7 +308,7 @@ public class MenuOthello{
 		this.affichageMenuPrincipale();
 	
 	}	
-	public void affichageMenuPrincipale(){
+	public boolean affichageMenuPrincipale(){
 		this.contour();
 		this.lettreO(2,9);
 		this.lettreT(2,16);
@@ -302,6 +321,7 @@ public class MenuOthello{
 		this.selection2(22,28);
 		this.selection3(27,28);
 		this.selection4(32,28);
+		this.selection5(37,28);
 		for(int ligne = 0; ligne<tabAffichageMenu.length; ligne++){
 			for(int col = 0; col<tabAffichageMenu[ligne].length;col++){
 				System.out.print(tabAffichageMenu[ligne][col]);	
@@ -309,7 +329,7 @@ public class MenuOthello{
 			}
 			System.out.println();
 		}
-		this.orientationMenu();
+		return this.orientationMenu();
 	}
 	
 

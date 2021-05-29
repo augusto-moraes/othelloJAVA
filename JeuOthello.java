@@ -13,6 +13,8 @@ public class JeuOthello {
 		plateau = new int [nbrlignes][nbrcolonnes];
 		print = new AffichageOthello(plateau);
 		moves = 0;
+
+		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " crée");
 	}
 
 	public JeuOthello (int nbrLB){

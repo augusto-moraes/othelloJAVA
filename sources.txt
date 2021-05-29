@@ -4,5 +4,6 @@
 ./JeuOthello.java
 ./Joueur.java
 ./TestGameplay.java
+./Main.java
 ./MenuOthello.java
 ./ImageToolboxMonoWindow.java
