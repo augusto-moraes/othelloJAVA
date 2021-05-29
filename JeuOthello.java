@@ -42,21 +42,21 @@ public class JeuOthello {
 		}
 				
 		// situation initale avec les quatres pions *au centre*
-		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 2 ; 
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)(nbrlignes/2)] = 1 ; 
-		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)+1)] = 2 ;
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)((nbrlignes/2)+1)] = 1 ; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 2; 
+		this.plateau[(int)((nbrcolonnes/2)+1)][(int)(nbrlignes/2)] = 1; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)-1)] = 1;
+		this.plateau[(int)((nbrcolonnes/2)+1)][(int)((nbrlignes/2)-1)] = 2; 
 	}
 
 	public void play() {
 		boolean gameover = false;
 
 		if(moves % 2 == 0) {
-			print.tourBlanc();
-			while(!this.poserPion(2));
-		} else {
 			print.tourNoir();
 			while(!this.poserPion(1));
+		} else {
+			print.tourBlanc();
+			while(!this.poserPion(2));
 		}
 		this.nextTour();
 	}
@@ -93,6 +93,10 @@ public class JeuOthello {
 				this.plateau[tmpX[k]][tmpY[k]] = joueur;
 			}
 		}
+	}
+
+	public boolean ennemiVoisin(int joueur) {
+		return false;
 	}
 
 	public boolean poserPion (int joueur, int x, int y) { 
