@@ -8,7 +8,7 @@ public class MenuOthello{
 	private JeuOthello jeu;
 	
 	public MenuOthello(){
-		this.tabAffichageMenu = new char[40][71];
+		this.tabAffichageMenu = new char[45][71];
 	}
 	/**
 	 *Cette méthode permet d'inscrire dans le tableau d'affichage du menu la lettre O du mot othello
@@ -175,7 +175,7 @@ public class MenuOthello{
 	public void selection3(int x, int y){
 		char[] lettre = 
 			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ',' ','3','.','R','é','g','l','e',' ',' ',' ','|',
+			'|',' ',' ',' ','3','.','R','e','g','l','e',' ',' ',' ','|',
 			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
@@ -236,7 +236,8 @@ public class MenuOthello{
 		}
 	}
 	/**
-	 *Cette méthode permet d'afficher l'ensemble du menu principale.
+	 *Cette méthode permet d'afficher l'ensemble du menu principale et de circuler entre les différents menues
+	 * en sélectionnant le numéro qui correspond
 	 */
 	public boolean orientationMenu(){
 		Scanner saisieUtilisateur = new Scanner(System.in);
@@ -255,6 +256,10 @@ public class MenuOthello{
 		}
 		return ent < 4;
 	}
+	/**
+	 *Cette méthode permet d'afficher le menu score. Ici est affiché les 3 parties les plus rapides qui ne seront pas actualisés 
+	 * car on peut pas faire plus rapide
+	 */
 	public void menuScore(){
 		System.out.println("               TOP 3 des parties les plus rapides  :             ");
 		System.out.println();
@@ -265,6 +270,8 @@ public class MenuOthello{
 		System.out.println("                      Victoire de Morgane                 ");
 		System.out.println("                 Augusto VS Morgane : 2min 08s                 ");
 		System.out.println("                      Victoire de Augusto                 ");
+		System.out.println("");
+		System.out.println("");
 		Scanner saisieUtilisateur = new Scanner(System.in);
 		System.out.println("Arrête de regarder les scores de boss, tu ne va jamais les battres de toute façon.");
 		System.out.println("Si tu veux retourner au menu principal, écrit 1");
@@ -276,8 +283,13 @@ public class MenuOthello{
 		this.affichageMenuPrincipale();
 	
 	}	
+	/**
+	 *Cette méthode permet d'afficher le menu options qui est juste là pour que se soit mieux
+	 */
 	public void menuOption(){
 		System.out.println("En faît, on n'a pas mis d'options dans le jeu, mais on a fait un menu options pour que le programme soit stylé");
+		System.out.println("");
+		System.out.println("");
 		Scanner saisieUtilisateur = new Scanner(System.in);
 		System.out.println("Donc si tu veux retourner au menu principal, écrit 1");
 		int ent = saisieUtilisateur.nextInt();
@@ -288,16 +300,40 @@ public class MenuOthello{
 		this.affichageMenuPrincipale();
 	
 	}
+	/**
+	 *Cette méthode permet d'afficher les règles du jeu pour que le joueur puisse jouer dans les meilleurs conditions
+	 */
 	public void menuRegle(){
-		System.out.println("Othello se joue à 2, sur un plateau unicolore de 64 cases (8 sur 8), avec des pions bicolores, noirs d'un côté et blancs de l'autre.");
-		System.out.println("Le but du jeu est d'avoir plus de pions de sa couleur que l'adversaire à la fin de la partie,");
-		System.out.println("celle-ci s'achevant lorsque aucun des deux joueurs ne peut plus jouer de coup légal, généralement lorsque les 64 cases sont occupées. ");
-		System.out.println("Au début de la partie, la position de départ  est simple. On commence par 4 pions, 2 noirs et 2 blancs positionner en carré.");
-		System.out.println("Les noirs commencent.");
-		System.out.println("Chacun à son tour, les joueurs vont poser un pion de leur couleur sur une case vide, adjacente à un pion adverse. ");
-		System.out.println("Chaque pion posé doit obligatoirement encadrer un ou plusieurs pions adverses avec un autre pion de sa couleur, déjà placé.");
-		System.out.println("Il retourne alors le ou les pions adverse(s) qu'il vient d'encadrer. Les pions ne sont ni retirés de l'othellier, ni déplacés d'une case à l'autre. ");
-		System.out.println("On peut encadrer des pions adverses dans les huit directions et plusieurs pions peuvent être encadrés dans chaque direction.");
+		System.out.println("Othello est un jeu de plateau se jouant à 2, traditionnellement sur un othellier unicolore de 64 cases (8 sur 8), ");
+		System.out.println("avec des pions bicolores, noirs d'un côté et blancs de l'autre.");
+		System.out.println("Dans notre Othello Java Edition, on peut choisir le nombre de case que va faire votre othellier, ");
+		System.out.println("afin de moduler votre plaisir de jeu et la durée de la partie selon vos envies.");
+		System.out.println("");
+		System.out.println("Le but du jeu est d'avoir plus de pions de sa couleur que l'adversaire à la fin de la partie, ");
+		System.out.println(", celle-ci s'achevant lorsque aucun des deux joueurs ne peut plus jouer de coup légal,");
+		System.out.println("généralement lorsque toutes les cases sont occupées, ou alors que aucun retournement et possible.");
+		System.out.println("");
+		System.out.println("A son tour de jeu, le joueur doit poser un pion de sa couleur. Trois conditions sont nécessaires :");
+		System.out.println("1. Le pion doit être posé sur une case vide.");
+		System.out.println("2. La case doit être adjacente à un pion adverse");
+		System.out.println("3. Retourner obligatoirement un pion en prenant en Sandwich : ");
+		System.out.println("Le pion posé doit encadrer un (ou plusieurs) pions adverses entre le pion qu’il pose et un pion de sa couleur, ");
+		System.out.println("déjà placé sur l’othellier.");
+		System.out.println("");
+		System.out.println("Les pions ne sont ni retirés de l’othellier, ni déplacés d’une case à l’autre.");
+		System.out.println("Jamais de réactions en chaîne : Les pions retournés ne peuvent pas servir à en retourner");
+		System.out.println("d’autres lors du même tour de jeu");
+		System.out.println("");
+		System.out.println("");
+		/*System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");*/
 		Scanner saisieUtilisateur = new Scanner(System.in);
 		System.out.println("C'est bon, tu as bien lu les règles ? Si tu veux retourner au menu principal, écrit 1");
 		int ent = saisieUtilisateur.nextInt();
@@ -307,7 +343,10 @@ public class MenuOthello{
 		}
 		this.affichageMenuPrincipale();
 	
-	}	
+	}
+	/**
+	 *Cette méthode permet d'afficher le menu principale avec écrit en haut "OTHELLO" et les différents menus
+	 */	
 	public boolean affichageMenuPrincipale(){
 		this.contour();
 		this.lettreO(2,9);
