@@ -14,7 +14,7 @@ public class JeuOthello {
 		print = new AffichageOthello(plateau);
 		moves = 0;
 
-		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " crée");
+		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " cree");
 	}
 
 	public JeuOthello (int nbrLB){
