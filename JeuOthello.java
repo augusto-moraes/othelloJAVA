@@ -113,14 +113,14 @@ public class JeuOthello {
 						ChangerCouleur(x,y+i) ; 
 					}					
 				}
-			} else if (plateau[x][y-1]!= 0 && Math.abs(plateau[x][y]-plateau[x][y-1]) !=0) {// pour des sandwichs vers la gauche
+			} else if (plateau[x][y-1]!= 0 && Math.abs(plateau[x][y]-plateau[x][y-1]) !=0) { // pour des sandwichs vers la gauche
 				
 				for (int i=1; i<plateau[0].length -y ; i++) {
 					while (plateau[x][y-i]-plateau[x][y-1-i]==0){ 
 						sandwich4 = sandwich4+1 ; 
 					}
 				}
-				if(plateau[x][y]-plateau[x][y-sandwich4]==0){
+				if (plateau[x][y]-plateau[x][y-sandwich4]==0){
 					for (int i=1 ; i<=sandwich4 ; i++) { 
 						ChangerCouleur(x,y-i); 
 					}
