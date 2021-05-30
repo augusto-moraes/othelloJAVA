@@ -1,4 +1,6 @@
 public class JeuOthello {
+	java.util.Scanner scanner = new java.util.Scanner(System.in);
+	
     // Propriétés du tableau (taille)
     private int nbrlignes ; 
     private int nbrcolonnes ;
@@ -14,7 +16,7 @@ public class JeuOthello {
 		print = new AffichageOthello(plateau);
 		moves = 0;
 
-		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " crée");
+		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " cree");
 	}
 
 	public JeuOthello (int nbrLB){
@@ -40,21 +42,21 @@ public class JeuOthello {
 		}
 				
 		// situation initale avec les quatres pions *au centre*
-		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 2 ; 
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)(nbrlignes/2)] = 1 ; 
-		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)+1)] = 2 ;
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)((nbrlignes/2)+1)] = 1 ; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 2; 
+		this.plateau[(int)((nbrcolonnes/2)+1)][(int)(nbrlignes/2)] = 1; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)-1)] = 1;
+		this.plateau[(int)((nbrcolonnes/2)+1)][(int)((nbrlignes/2)-1)] = 2; 
 	}
 
 	public void play() {
 		boolean gameover = false;
 
 		if(moves % 2 == 0) {
-			print.tourBlanc();
-			while(!this.poserPion(2));
-		} else {
 			print.tourNoir();
 			while(!this.poserPion(1));
+		} else {
+			print.tourBlanc();
+			while(!this.poserPion(2));
 		}
 		this.nextTour();
 	}
@@ -64,86 +66,75 @@ public class JeuOthello {
 		print.affichagePlateau();
 		this.play();
 	}
-	
-	public boolean poserPion (int Couleurjoueur, int x, int y) { 
-		if (plateau[x][y] == 0){  
-			plateau[x][y] = Couleurjoueur ; 
-			
-			int sandwich1 = 0 ;// pour des sandwichs en colonne vers le bas 
-			int sandwich2 = 0 ;// pour des sandwichs en colonne vers le haut 
-			int sandwich3 = 0 ;// pour des sandwichs en ligne vers la droite
-			int sandwich4 = 0 ;// pour des sandwichs en ligne vers la gauche 
-			
-			// pour des sandwichs vers le bas : 
-			if (plateau[x+1][y]!= 0 && Math.abs(plateau[x][y]-plateau[x+1][y]) !=0) { //si la case du dessous est vide et qu'elle est de la couleur adverse
-	
-				for (int i=1; i<plateau.length -x ; i++) { //
-					while (plateau[x+i][y]-plateau[x+1+i][y]==0){ //on cherche combien de pions de la couleur adverse sont alignés à la suite vers le bas
-						sandwich1 = sandwich1+1 ; 
-				
-					}
-				}
-				if(plateau[x][y]-plateau[x+sandwich1][y]==0){// on s'assure que ces pions alignés sont bien pris en sandwich avec un pion de la couleur initiale au bout de la ligne
-					for (int i =1 ; i<= sandwich1 ; i++) { 
-						ChangerCouleur(x+i,y) ; // on change la couleur de tous ces pions en question
-					}					
-				}
-				
-			} else if (plateau[x-1][y]!= 0 && Math.abs(plateau[x][y]-plateau[x-1][y]) !=0) { // pour des sandwichs vers le haut  
-				
-				for (int i=1; i<plateau.length -x ; i++) {
-					while (plateau[x-i][y]-plateau[x-1-i][y]==0){ 
-						sandwich2 = sandwich2+1 ; 
-					}
-				}
-				if(plateau[x][y]-plateau[x-sandwich2][y]==0){
-					for (int i=1 ; i<=sandwich2 ; i++) { 
-						ChangerCouleur(x-i,y); 
-					}
-				}
-			
-			} else if (plateau[x][y+1]!= 0 && Math.abs(plateau[x][y]-plateau[x][y+1]) !=0) {// pour des sandwichs vers la droite
-				
-				for (int i=1; i<plateau[0].length -y ; i++) {
-					while (plateau[x][y+1]-plateau[x][y+1+i]==0){ 
-						sandwich3 = sandwich3+1 ; 
-				
-					}
-				}
-				if(plateau[x][y]-plateau[x][y+sandwich3]==0){
-					for (int i =1 ; i<=sandwich3 ; i++) { 
-						ChangerCouleur(x,y+i) ; 
-					}					
-				}
-			} else if (plateau[x][y-1]!= 0 && Math.abs(plateau[x][y]-plateau[x][y-1]) !=0) { // pour des sandwichs vers la gauche
-				
-				for (int i=1; i<plateau[0].length -y ; i++) {
-					while (plateau[x][y-i]-plateau[x][y-1-i]==0){ 
-						sandwich4 = sandwich4+1 ; 
-					}
-				}
-				if (plateau[x][y]-plateau[x][y-sandwich4]==0){
-					for (int i=1 ; i<=sandwich4 ; i++) { 
-						ChangerCouleur(x,y-i); 
-					}
-				}
+
+	// cherche un sandwich dans la direction dirX dirY
+	public void findSandwich(int joueur, int posX, int posY, int dirX, int dirY) {
+		boolean sandwich = false;
+		int [] tmpX = new int [this.plateau.length];
+		int [] tmpY = new int [this.plateau[0].length];
+		int i = 1;
+
+		while(
+			posX + i*dirX >= 0 && posX + i*dirX < this.plateau.length && 
+			posY + i*dirY >= 0 && posY + i*dirY < this.plateau[0].length &&
+			this.plateau[posX+i*dirX][posY+i*dirY] != 0 &&
+			!sandwich
+		) {
+			tmpX[i-1] = posX + i*dirX;
+			tmpY[i-1] = posY + i*dirY;
+			if(plateau[posX + i*dirX][posY + i*dirY] == joueur) {
+				sandwich = true;
 			}
+			i++;
+		}
+
+		if(sandwich) {
+			for(int k=0; k<i-1; k++) {
+				this.plateau[tmpX[k]][tmpY[k]] = joueur;
+			}
+		}
+	}
+
+	public boolean ennemiVoisin(int joueur) {
+		return false;
+	}
+
+	public boolean poserPion (int joueur, int x, int y) { 
+		if (plateau[x][y] == 0){  
+			plateau[x][y] = joueur; 
+			
+			findSandwich(joueur, x, y, 1, 0);
+			findSandwich(joueur, x, y, -1, 0);
+			findSandwich(joueur, x, y, 0, 1);
+			findSandwich(joueur, x, y, 0, -1);
+
+			// diagonales
+			findSandwich(joueur, x, y, 1, 1);
+			findSandwich(joueur, x, y, 1, -1);
+			findSandwich(joueur, x, y, -1, 1);
+			findSandwich(joueur, x, y, -1, -1);
+
 			return true;
 		} else { 
-			System.out.print("Erreur: Impossibilité de poser pion " + Couleurjoueur + " dans la case (" + x + "," + y + ")\nVeuillez essayer une autre case: ");
+			System.out.print("Erreur: Impossibilité de poser pion " + joueur + " dans la case (" + x+1 + "," + y+1 + ")\nVeuillez essayer une autre case: ");
 			return false;
 		}
 	}
 
-	public boolean poserPion (int joueur) { 
-		java.util.Scanner scanner = new java.util.Scanner(System.in);
-		int x = scanner.nextInt();
-		int y = scanner.nextInt();
+	public boolean poserPion (int joueur) {
+		int x = scanner.nextInt() - 1;
+		int y = scanner.nextInt() - 1;
+
+		while(x > this.plateau.length || x<0 || y > this.plateau[0].length || y<0) {
+			System.out.println("Position hors du plateau, veuillez choisir une autre position: ");
+			x = scanner.nextInt() - 1;
+			y = scanner.nextInt() - 1;
+		}
 
 		return this.poserPion(joueur, x, y);
 	}
 
-	public void ChangerCouleur (int x, int y) { 
+	public void changerCouleur (int x, int y) { 
 		
 		if (plateau[x][y]==1){
 			plateau[x][y]=2 ; 
