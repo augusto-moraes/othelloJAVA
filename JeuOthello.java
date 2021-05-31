@@ -42,10 +42,10 @@ public class JeuOthello {
 		}
 				
 		// situation initale avec les quatres pions *au centre*
-		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 2; 
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)(nbrlignes/2)] = 1; 
-		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)-1)] = 1;
-		this.plateau[(int)((nbrcolonnes/2)+1)][(int)((nbrlignes/2)-1)] = 2; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)(nbrlignes/2)] = 1; 
+		this.plateau[(int)((nbrcolonnes/2)-1)][(int)(nbrlignes/2)] = 2; 
+		this.plateau[(int)(nbrcolonnes/2)][(int)((nbrlignes/2)-1)] = 2;
+		this.plateau[(int)((nbrcolonnes/2)-1)][(int)((nbrlignes/2)-1)] = 1; 
 	}
 
 	public void play() {
