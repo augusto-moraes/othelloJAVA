@@ -125,7 +125,7 @@ public class JeuOthello {
 		int x = scanner.nextInt() - 1;
 		int y = scanner.nextInt() - 1;
 
-		while(x > this.plateau.length || x<0 || y > this.plateau[0].length || y<0) {
+		while(x > this.plateau.length-1 || x<0 || y > this.plateau[0].length-1 || y<0) {
 			System.out.println("Position hors du plateau, veuillez choisir une autre position: ");
 			x = scanner.nextInt() - 1;
 			y = scanner.nextInt() - 1;
