@@ -98,10 +98,10 @@ public class JeuOthello {
 
 	// Find sandwichs in all directions if there is no given direction
 	public void findSandwich(Joueur joueur, int x, int y) {
-		int [][] dir = {{-1,-1,-1,0,0,1,1,1}, {-1,0,1,-1,1,-1,0,1}};
-		for(int i=0;i<dir[0].length;i++){
-			for(int j=0;j<dir[1].length;j++) {
-				findSandwich(joueur, x, y, dir[0][i], dir[1][j]);
+		int [] dir = {-1,0,1};
+		for(int i=0;i<dir.length;i++){
+			for(int j=0;j<dir.length;j++) {
+				findSandwich(joueur, x, y, dir[i], dir[j]);
 			}
 		}
 	}
