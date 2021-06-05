@@ -108,17 +108,16 @@ public class JeuOthello {
 
 	public boolean isEnemyAround(Joueur joueur, int x, int y) {
 		boolean enemyFound = false;
-		int [][] dir = {{-1,-1,-1,0,0,1,1,1}, {-1,0,1,-1,1,-1,0,1}};
+		int [] dir = {-1,0,1};
 
 		int i = 0;
-		while(i < dir[0].length && !enemyFound) {
-			if(
-				x + dir[0][i] >= 0 && x + dir[0][i] < this.plateau.length &&
-				y + dir[1][i] >= 0 && y + dir[1][i] < this.plateau[0].length
-			) {
+		while(i < dir.length && !enemyFound) {
+			if(x + dir[i] >= 0 && x + dir[i] < this.plateau.length) {
 				int j = 0;
-				while(j < dir[1].length && !enemyFound) {
-					enemyFound = this.plateau[x + dir[0][i]][y + dir[1][i]] == joueur.getEnnemi();
+				while(j < dir.length && !enemyFound) {
+					if(y + dir[j] >= 0 && y + dir[j] < this.plateau[0].length) {
+						enemyFound = this.plateau[x + dir[i]][y + dir[j]] == joueur.getEnnemi();
+					}
 					j++;
 				}
 			}
