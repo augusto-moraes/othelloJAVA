@@ -8,6 +8,8 @@ public class TestAffichage{
 		jeu1.affichagePlateau();
 		//MenuOthello menu1 = new MenuOthello();
 		//menu1.affichageMenuPrincipale();
+		graphismePartie game1 = new graphismePartie();
+		game1.affichageGraphismePartie();
 		
 	}
 }

@@ -1,9 +1,9 @@
 ./Othello.java
 ./TestAffichage.java
 ./AffichageOthello.java
+./graphismePartie.java
 ./JeuOthello.java
 ./Joueur.java
 ./TestGameplay.java
 ./Main.java
 ./MenuOthello.java
-./ImageToolboxMonoWindow.java
