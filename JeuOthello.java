@@ -106,6 +106,7 @@ public class JeuOthello {
 		}
 	}
 
+	// Verifie si je peux poser le pion dans la case (x,y)
 	public boolean isEnemyAround(Joueur joueur, int x, int y) {
 		boolean enemyFound = false;
 		int [] dir = {-1,0,1};
