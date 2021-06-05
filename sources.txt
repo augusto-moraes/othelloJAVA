@@ -1,7 +1,7 @@
 ./Othello.java
 ./TestAffichage.java
 ./AffichageOthello.java
-./graphismePartie.java
+./GraphismePartie.java
 ./JeuOthello.java
 ./Joueur.java
 ./TestGameplay.java
