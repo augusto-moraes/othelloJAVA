@@ -255,7 +255,7 @@ public class AffichageOthello{
 		}
 
 		public void tourJoueur(Joueur joueur) {
-			System.out.print("Tour du joueur " + joueur.getName() +": ");
+			System.out.print("Tour du joueur " + joueur.getName() +" (ligne, colonne): ");
 		}
 
 		public void affichagePlateauNuke(){

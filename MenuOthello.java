@@ -382,9 +382,9 @@ public class MenuOthello{
 	}
 	public void setTailleTableau(){
 		int taille = 3;
-		while(taille%2 !=0){
+		while(taille%2 !=0 && taille>2){
 			Scanner saisieUtilisateur = new Scanner(System.in);
-			System.out.println("Quelle taille de plateau veut-tu ? Il faut mettre un nombre pair ");
+			System.out.println("Quelle taille de plateau veut-tu ? Il faut mettre un nombre pair et plus grande que deux");
 			taille= saisieUtilisateur.nextInt();
 		}
 		tailleJeu = taille;
