@@ -27,10 +27,17 @@ public class JeuOthello {
 		this(nbLC,nbLC);
 	}
 
-	public void startGame() {
+	// gamemode 1 -> pvp / gamemode 2 -> pvIA
+	public void startGame(int gamemode) {
 		this.debutPartie();
 		print.affichagePlateau();
-		this.play(this.joueurNoir);
+		if(gamemode == 1) {
+			this.play(this.joueurNoir, gamemode);
+		} else {
+			if(gamemode != 2) {
+				System.out.println("Gamemode error. Mode player vs machine selected by default.");
+			} this.play(this.joueurNoir, 2);
+		}
 	}
 
 	public void debutPartie() {
@@ -48,11 +55,11 @@ public class JeuOthello {
 		this.plateau[(int)((nbrcolonnes/2)-1)][(int)((nbrlignes/2)-1)] = 1; 
 	}
 
-	public void play(Joueur joueur) {
+	public void play(Joueur joueur, int gamemode) {
 		if(!this.isGameOver(joueur)) {
 			print.tourJoueur(joueur);
 			while(!this.poserPion(joueur));
-			this.nextTour(joueur);
+			this.nextTour(joueur, gamemode);
 		} else {
 			this.gameOver(joueur);
 		}
@@ -87,9 +94,24 @@ public class JeuOthello {
 		return this.poserPion(joueur, x, y);
 	}
 
-	public void nextTour(Joueur joueur) {
+	public void nextTour(Joueur joueur, int gamemode) {
 		print.affichagePlateau();
-		this.play(joueur.getEnnemi());
+		if(gamemode == 1) { // Tour du prochain joueur
+			this.play(joueur.getEnnemi(), gamemode);
+		} else { // Machine joue et ensuite tour du joueur
+			Joueur machine = joueur.getEnnemi();
+			int [][] moves = this.listPossibleMoves(machine);
+			int indice = (int) (Math.random()*moves.length);
+			this.poserPion(machine, moves[indice][0], moves[indice][1]);
+
+			System.out.println("La machine est en train de penser...");
+			this.wait(1000);
+
+			print.affichagePlateau();
+			System.out.println("Piece " + machine.getName() + " posée sur la case ("+ (moves[indice][0]+1) +","+ (moves[indice][1]+1) +")");
+
+			this.play(joueur, gamemode);
+		}
 	}
 
 	public int [][] listPossibleMoves(Joueur joueur) {
@@ -211,5 +233,13 @@ public class JeuOthello {
 			}
 		}
 		print.affichagePlateau();	
+	}
+
+	public void wait(int ms){ 
+		try {
+			Thread.sleep(ms);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 	}
 }

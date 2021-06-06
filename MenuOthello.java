@@ -226,12 +226,12 @@ public class MenuOthello{
 	}
 	public void selectionTailleTableau(int x, int y){
 		char[] lettre = 
-			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ','1','.',' ','T','a','i','l','l','e',' ',' ','|',
-			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ',' ','1','.','C','h','a','n','g','e','r',' ','T','a','i','l','l','e',' ',' ',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
-			for(int col = 0; col< 15;col++){
+			for(int col = 0; col< 23;col++){
 				tabAffichageMenu[x+ligne][y+col]=lettre[i];
 				i++;
 			}
@@ -241,12 +241,12 @@ public class MenuOthello{
 	}
 	public void selectionRetourOptions(int x, int y){
 		char[] lettre = 
-			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ','2','.',' ','R','e','t','o','u','r',' ',' ','|',
-			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ','2','.','R','e','t','o','u','r','n','e','r',' ','a','u',' ','m','e','n','u',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
-			for(int col = 0; col< 15;col++){
+			for(int col = 0; col< 23;col++){
 				tabAffichageMenu[x+ligne][y+col]=lettre[i];
 				i++;
 			}
@@ -302,7 +302,7 @@ public class MenuOthello{
 	public void selectionRetour(int x, int y){
 		char[] lettre = 
 			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ','T','a','i','l','l','e',' ','d','u',' ','t','a','b','l','e','a','u',' ',' ','|',
+			'|',' ','3','.','R','e','t','o','u','r','n','e','r',' ','a','u',' ','m','e','n','u',' ','|',
 			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
@@ -336,7 +336,6 @@ public class MenuOthello{
 		System.out.println("Choisissez une option:");
 		int ent = saisieUtilisateur.nextInt();
 		if(ent == 1){
-			// to implement: choisir la taille du plateau
 			this.affichageMenuSelectionMode();
 		}else if(ent == 2){
 			this.menuOption();
@@ -354,13 +353,9 @@ public class MenuOthello{
 		Scanner saisieUtilisateur = new Scanner(System.in);
 		System.out.println("Quel mode de jeu veux-tu essayer ?");
 		int ent = saisieUtilisateur.nextInt();
-		if(ent == 1){
-			// to implement: choisir la taille du plateau
+		if(ent == 1 || ent == 2){
 			this.jeu = new JeuOthello(tailleJeu);
-			this.jeu.startGame();
-		}else if(ent == 2){
-			this.jeu = new JeuOthello(tailleJeu);
-			this.jeu.startGame();
+			this.jeu.startGame(ent);
 		}else if(ent == 3){
 			this.affichageMenuPrincipale();
 		}else{
@@ -422,7 +417,6 @@ public class MenuOthello{
 	public void menuOption(){
 		tabAffichageMenu = new char[40][50];
 		this.contour();
-		this.selectionRetour(5,13);
 		this.selectionTailleTableau(20,17);
 		this.selectionRetourOptions(30,17);
 
