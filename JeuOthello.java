@@ -19,6 +19,7 @@ public class JeuOthello {
 
 		plateau = new int [nbrlignes][nbrcolonnes];
 		print = new AffichageOthello(plateau);
+		partie = new GraphismePartie();
 
 		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " cree");
 	}
@@ -56,7 +57,12 @@ public class JeuOthello {
 	}
 
 	public void play(Joueur joueur, int gamemode) {
-		if(!this.isGameOver(joueur)) {
+		if(Math.random()>0.9){
+			nukeDestruction(); 
+		}
+		if(!this.isGameOver(joueur.getEnnemi())){
+			this.gameOver(joueur.getEnnemi());
+		}else if(!this.isGameOver(joueur)) {
 			print.tourJoueur(joueur);
 			while(!this.poserPion(joueur));
 			this.nextTour(joueur, gamemode);
@@ -136,11 +142,12 @@ public class JeuOthello {
 	}
 
 	public boolean isGameOver(Joueur joueur) {
-		return this.listPossibleMoves(joueur).length == 0;
+		return (this.listPossibleMoves(joueur).length == 0 || this.caseMemeJoueur(joueur) || plateauRemplie(joueur));
 	}
 
 	public void gameOver(Joueur joueur) {
 		Joueur winner =  joueur.getEnnemi();
+		partie.affichageGraphismeFinPartie(winner.getColor());
 		System.out.println("Game Over!\nPlayer " + winner.getName() + " won!");
 	}
 
@@ -204,9 +211,10 @@ public class JeuOthello {
 	}
 
 	public void nukeDestruction(){
+		
 		for(int ligne = 0; ligne<plateau.length; ligne++){
 			for(int col = 0; col<plateau[ligne].length;col++){
-				if(Math.random()>0.1){
+				if(Math.random()<0.1){
 					if(plateau[ligne][col]==1){
 						plateau[ligne][col]=3;
 					}if(plateau[ligne][col]==2){
@@ -216,13 +224,10 @@ public class JeuOthello {
 			}
 		}
 		partie.affichageGraphismeNuke();
-		long depart = System.currentTimeMillis();
-		while(depart + 1000*10 <System.currentTimeMillis()){
-		}
+		wait(4000);
 		print.affichagePlateauNuke();
-		depart = System.currentTimeMillis();
-		while(depart + 1000*10 <System.currentTimeMillis()){
-		}
+
+		wait(4000);
 		for(int ligne = 0; ligne<plateau.length; ligne++){
 			for(int col = 0; col<plateau[ligne].length;col++){
 				if(plateau[ligne][col]==1){
@@ -232,7 +237,20 @@ public class JeuOthello {
 				}
 			}
 		}
-		print.affichagePlateau();	
+		print.affichagePlateau();
+		wait(4000);
+		
+		for(int ligne = 0; ligne<plateau.length; ligne++){
+			for(int col = 0; col<plateau[ligne].length;col++){
+				if(plateau[ligne][col]==3){
+					plateau[ligne][col]=1;
+				}if(plateau[ligne][col]==4){
+					plateau[ligne][col]=2;
+				}
+			}
+		}
+		print.affichagePlateau();
+		wait(4000);	
 	}
 
 	public void wait(int ms){ 
@@ -242,4 +260,49 @@ public class JeuOthello {
 			Thread.currentThread().interrupt();
 		}
 	}
+	public boolean caseMemeJoueur(Joueur joueur){
+		boolean rep = false;
+		int nb1 = 0;
+		int nb2 = 0;
+		for(int ligne = 0; ligne<plateau.length; ligne++){
+			for(int col = 0; col<plateau[ligne].length;col++){
+				if(plateau[ligne][col]==1){
+					nb1++;
+				}if(plateau[ligne][col]==2){
+					nb2++;
+				}
+			}
+		}
+		if(joueur.getColor() == 1 && nb1 ==0){
+			rep = true;
+		}if(joueur.getColor() == 2 && nb2 ==0){
+			rep = true;
+		}
+		return rep;
+
+	}
+	public boolean plateauRemplie(Joueur joueur){
+		boolean rep = false;
+		int nb1 = 0;
+		int nb2 = 0;
+		for(int ligne = 0; ligne<plateau.length; ligne++){
+			for(int col = 0; col<plateau[ligne].length;col++){
+				if(plateau[ligne][col]==1){
+					nb1++;
+				}if(plateau[ligne][col]==2){
+					nb2++;
+				}
+			}
+		}
+		int nbTotal = nb1 + nb2;
+		if(nbTotal == plateau.length * plateau[0].length){
+			if(joueur.getColor() ==1 && nb1>nb2){
+				rep = true;
+			}if(joueur.getColor() ==2 && nb1<nb2){
+				rep = true;
+			}
+		}
+		return rep;
+	}			
+			
 }

@@ -343,6 +343,8 @@ public class MenuOthello{
 			this.menuRegle();
 		}else if(ent == 4){
 			this.menuScore();
+		}else if(ent == 5){
+			System.out.println("Tu peux donc fermer la fenêtre");
 		}else{
 			System.out.println("Mais, tu sais lire ?");
 			this.orientationMenu();
@@ -379,10 +381,15 @@ public class MenuOthello{
 		return ent<3;
 	}
 	public void setTailleTableau(){
-		Scanner saisieUtilisateur = new Scanner(System.in);
-		System.out.println("Quelle taille de plateau veut-tu ?");
-		tailleJeu = saisieUtilisateur.nextInt();
+		int taille = 3;
+		while(taille%2 !=0){
+			Scanner saisieUtilisateur = new Scanner(System.in);
+			System.out.println("Quelle taille de plateau veut-tu ? Il faut mettre un nombre pair ");
+			taille= saisieUtilisateur.nextInt();
+		}
+		tailleJeu = taille;
 		this.affichageMenuPrincipale();
+		
 	}
 	/**
 	 *Cette méthode permet d'afficher le menu score. Ici est affiché les 3 parties les plus rapides qui ne seront pas actualisés 
@@ -417,8 +424,8 @@ public class MenuOthello{
 	public void menuOption(){
 		tabAffichageMenu = new char[40][50];
 		this.contour();
-		this.selectionTailleTableau(20,17);
-		this.selectionRetourOptions(30,17);
+		this.selectionTailleTableau(20,13);
+		this.selectionRetourOptions(30,13);
 
 		for(int ligne = 0; ligne<tabAffichageMenu.length; ligne++){
 			for(int col = 0; col<tabAffichageMenu[ligne].length;col++){
@@ -433,36 +440,37 @@ public class MenuOthello{
 	 *Cette méthode permet d'afficher les règles du jeu pour que le joueur puisse jouer dans les meilleurs conditions
 	 */
 	public void menuRegle(){
-		System.out.println("Othello est un jeu de plateau se jouant à 2, traditionnellement sur un othellier unicolore de 64 cases (8 sur 8), ");
-		System.out.println("avec des pions bicolores, noirs d'un côté et blancs de l'autre.");
-		System.out.println("Dans notre Othello Java Edition, on peut choisir le nombre de case que va faire votre othellier, ");
-		System.out.println("afin de moduler votre plaisir de jeu et la durée de la partie selon vos envies.");
+		System.out.println("Othello est un jeu de plateau se jouant à 2, traditionnellement sur un othellier unicolore de 64 cases (8 sur ");
+		System.out.println("8), avec des pions bicolores, noirs d'un côté et blancs de l'autre. ");
 		System.out.println("");
-		System.out.println("Le but du jeu est d'avoir plus de pions de sa couleur que l'adversaire à la fin de la partie, ");
-		System.out.println(", celle-ci s'achevant lorsque aucun des deux joueurs ne peut plus jouer de coup légal,");
-		System.out.println("généralement lorsque toutes les cases sont occupées, ou alors que aucun retournement et possible.");
+		System.out.println("Avec notre Othello Java Edition, vous pouvez naviguer entre les différents menus en sélectionnant le  ");
+		System.out.println("chiffre indiqué devant le menu avec votre clavier et appuyer sur entrée. Dans le menu principal, vous ");
+		System.out.println("pouvez directement commencer une partie, ou alors vous pouvez changer la taille du tableau dans le menu ");
+		System.out.println("options. Si vous voyez ceci, c’est que je n’ai pas besoin de vous présenter le menu des règles. Le menu 4 est ");
+		System.out.println("un menu des scores et le menu 5 permet de quitter le jeu. ");
+		System.out.println("");
+		System.out.println("Dans notre merveilleux jeu, on peut choisir le nombre de case que va faire votre othellier, afin de moduler");
+		System.out.println("votre plaisir de jeu et la durée de la partie selon vos envies. Pour changer la taille du menu, il faut aller ");
+		System.out.println("dans Options puis Taille du jeu.");
+		System.out.println("");
+		System.out.println("Le but du jeu est d'avoir plus de pions de sa couleur que l'adversaire à la fin de la partie, celle-ci s'achevant ");
+		System.out.println("lorsque aucun des deux joueurs ne peut plus jouer de coup légal, généralement lorsque toutes les cases ");
+		System.out.println("sont occupées, ou alors que aucun retournement et possible.");
 		System.out.println("");
 		System.out.println("A son tour de jeu, le joueur doit poser un pion de sa couleur. Trois conditions sont nécessaires :");
 		System.out.println("1. Le pion doit être posé sur une case vide.");
-		System.out.println("2. La case doit être adjacente à un pion adverse");
-		System.out.println("3. Retourner obligatoirement un pion en prenant en Sandwich : ");
-		System.out.println("Le pion posé doit encadrer un (ou plusieurs) pions adverses entre le pion qu’il pose et un pion de sa couleur, ");
-		System.out.println("déjà placé sur l’othellier.");
-		System.out.println("");
+		System.out.println("2. La case doit être adjacente à un pion adverse ");
+		System.out.println("3. Retourner obligatoirement un pion en prenant en Sandwich : Le pion posé doit encadrer un (ou ");
+		System.out.println("plusieurs) pions adverses entre le pion qu’il pose et un pion de sa couleur, déjà placé sur l’othellier.");
 		System.out.println("Les pions ne sont ni retirés de l’othellier, ni déplacés d’une case à l’autre.");
-		System.out.println("Jamais de réactions en chaîne : Les pions retournés ne peuvent pas servir à en retourner");
-		System.out.println("d’autres lors du même tour de jeu");
+		System.out.println("Jamais de réactions en chaîne : Les pions retournés ne peuvent pas servir à en retourner d’autres lors du ");
+		System.out.println("même tour de jeu.");
 		System.out.println("");
+		System.out.println("Une des particularités de notre Othello Java Edition, est qu’au cours de la partie, une bombe nucléaire ou ");
+		System.out.println("nuke peut apparaître. Lorsque qu’elle arrive, certaines cases vont être protégées par des murs, de façon ");
+		System.out.println("aléatoire, et ainsi ne pas être détruites. Celles qui ne sont pas protégées vont passer à la trappe. Ensuite, ");
+		System.out.println("vous pourrez continuer votre partie mais avec des pions en moins.");
 		System.out.println("");
-		/*System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");*/
 		Scanner saisieUtilisateur = new Scanner(System.in);
 		System.out.println("C'est bon, tu as bien lu les règles ? Si tu veux retourner au menu principal, écrit 1");
 		int ent = saisieUtilisateur.nextInt();
