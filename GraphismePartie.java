@@ -1,7 +1,7 @@
-public class graphismePartie{
+public class GraphismePartie{
 	private char[][] tabAffichageMenu;
 	
-	public graphismePartie(){
+	public GraphismePartie(){
 		this.tabAffichageMenu = new char[60][71];
 	}
 	
