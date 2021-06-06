@@ -60,9 +60,10 @@ public class JeuOthello {
 		if(Math.random()>0.9){
 			nukeDestruction(); 
 		}
-		if(!this.isGameOver(joueur.getEnnemi())){
+		if(this.isGameOver(joueur.getEnnemi())){
 			this.gameOver(joueur.getEnnemi());
-		}else if(!this.isGameOver(joueur)) {
+		}else 
+		if(!this.isGameOver(joueur)) {
 			print.tourJoueur(joueur);
 			while(!this.poserPion(joueur));
 			this.nextTour(joueur, gamemode);
