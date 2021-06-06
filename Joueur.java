@@ -9,13 +9,13 @@ public class Joueur {
 		return this.couleur;
 	}
 
-	public int getEnnemi() {
-        int res = 0 ;
+	public Joueur getEnnemi() {
+        Joueur res = new Joueur(0);
         
         if (this.couleur == 1) {
-            res = 2 ; 
-        } else if (this.couleur == 2) {
-            res = 1 ; 
+            res = new Joueur(2); 
+        } else if (this.couleur == 2){
+            res = new Joueur(1); 
         }
         return res ; 
     }
@@ -30,4 +30,8 @@ public class Joueur {
         }
         return res ;
 	}
+
+    public boolean equals(Joueur joueur) {
+        return this.couleur == joueur.getColor();
+    }
 }	 

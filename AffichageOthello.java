@@ -270,13 +270,10 @@ public class AffichageOthello{
 			this.sauvegardeAncienTableau();
 		}
 
-		public void tourBlanc() {
-			System.out.print("Tour du joueur blanc: ");
+		public void tourJoueur(Joueur joueur) {
+			System.out.print("Tour du joueur " + joueur.getName() +": ");
 		}
 
-		public void tourNoir() {
-			System.out.print("Tour du joueur noir: ");
-		}
 		public void affichagePlateauNuke(){
 			this.PlacementPion();
 			for(int ligne = 0; ligne<tabAffichageJeu.length; ligne++){

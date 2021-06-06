@@ -5,7 +5,6 @@ public class JeuOthello {
     private int nbrlignes ; 
     private int nbrcolonnes ;
     private int [][] plateau;
-	private int moves;
 	private Joueur joueurNoir;
 	private Joueur joueurBlanc;
 	private AffichageOthello print;
@@ -20,19 +19,18 @@ public class JeuOthello {
 
 		plateau = new int [nbrlignes][nbrcolonnes];
 		print = new AffichageOthello(plateau);
-		moves = 0;
 
 		System.out.println("Plateau " + nbrlignes + "x" + nbrcolonnes + " cree");
 	}
 
-	public JeuOthello (int nbrLB){
-		this(nbrLB,nbrLB);
+	public JeuOthello(int nbLC){
+		this(nbLC,nbLC);
 	}
 
 	public void startGame() {
 		this.debutPartie();
 		print.affichagePlateau();
-		this.play();
+		this.play(this.joueurNoir);
 	}
 
 	public void debutPartie() {
@@ -50,28 +48,80 @@ public class JeuOthello {
 		this.plateau[(int)((nbrcolonnes/2)-1)][(int)((nbrlignes/2)-1)] = 1; 
 	}
 
-	public void play() {
-		boolean gameover = false;
-
-		if(moves % 2 == 0) {
-			print.tourNoir();
-			while(!this.poserPion(this.joueurNoir));
+	public void play(Joueur joueur) {
+		if(!this.isGameOver(joueur)) {
+			print.tourJoueur(joueur);
+			while(!this.poserPion(joueur));
+			this.nextTour(joueur);
 		} else {
-			print.tourBlanc();
-			while(!this.poserPion(this.joueurBlanc));
+			this.gameOver(joueur);
 		}
-		this.nextTour();
 	}
 
-	public void nextTour() {
-		moves++;
+	public boolean poserPion(Joueur joueur, int x, int y) { 
+		boolean res = false;
+		if(plateau[x][y] == 0) {
+			if(isEnemyAround(joueur, x, y)) {
+				plateau[x][y] = joueur.getColor();;
+				findSandwich(joueur, x, y);
+				res = true;
+			} else { 
+				System.out.print("Oups! La case (" + (x+1) + "," + (y+1) + ") n'est pas tangente a une piece enemie.\nVeuillez essayer une autre case (joueur "+ joueur.getName() +"): ");
+			}
+		} else { 
+			System.out.print("Oups! La case (" + (x+1) + "," + (y+1) + ") est deja occupee.\nVeuillez essayer une autre case (joueur "+ joueur.getName() +"): ");
+		}
+		return res;
+	}
+
+	public boolean poserPion(Joueur joueur) {
+		int x = scanner.nextInt() - 1;
+		int y = scanner.nextInt() - 1;
+
+		while(x > this.plateau.length-1 || x<0 || y > this.plateau[0].length-1 || y<0) {
+			System.out.println("Position hors du plateau, veuillez choisir une autre position: ");
+			x = scanner.nextInt() - 1;
+			y = scanner.nextInt() - 1;
+		}
+
+		return this.poserPion(joueur, x, y);
+	}
+
+	public void nextTour(Joueur joueur) {
 		print.affichagePlateau();
-		this.play();
-		
-
+		this.play(joueur.getEnnemi());
 	}
-	
-	
+
+	public int [][] listPossibleMoves(Joueur joueur) {
+		int [][] list = {};
+
+		for(int i=0; i<this.plateau.length; i++) {
+			for(int j=0; j<this.plateau[0].length; j++) {
+				if(this.plateau[i][j] == 0 && this.isEnemyAround(joueur, i, j)) {
+					int [][] tmp = new int[list.length+1][2];
+					for(int k=0;k<list.length;k++) {
+						tmp[k][0] = list[k][0];
+						tmp[k][1] = list[k][1];
+					}
+					list = tmp;
+					list[list.length-1][0] = i;
+					list[list.length-1][1] = j;
+				}
+			}
+		}
+
+		return list;
+	}
+
+	public boolean isGameOver(Joueur joueur) {
+		return this.listPossibleMoves(joueur).length == 0;
+	}
+
+	public void gameOver(Joueur joueur) {
+		Joueur winner =  joueur.getEnnemi();
+		System.out.println("Game Over!\nPlayer " + winner.getName() + " won!");
+	}
+
 	// cherche un sandwich dans la direction dirX dirY
 	public void findSandwich(Joueur joueur, int posX, int posY, int dirX, int dirY) {
 		boolean sandwich = false;
@@ -121,7 +171,7 @@ public class JeuOthello {
 				int j = 0;
 				while(j < dir.length && !enemyFound) {
 					if(y + dir[j] >= 0 && y + dir[j] < this.plateau[0].length) {
-						enemyFound = this.plateau[x + dir[i]][y + dir[j]] == joueur.getEnnemi();
+						enemyFound = this.plateau[x+dir[i]][y+dir[j]] == joueur.getEnnemi().getColor();
 					}
 					j++;
 				}
@@ -131,34 +181,6 @@ public class JeuOthello {
 		return enemyFound;
 	}
 
-	public boolean poserPion(Joueur joueur, int x, int y) { 
-		boolean res = false;
-		if(plateau[x][y] == 0) {
-			if(isEnemyAround(joueur, x, y)) {
-				plateau[x][y] = joueur.getColor();;
-				findSandwich(joueur, x, y);
-				res = true;
-			} else { 
-				System.out.print("Ops! La case (" + (x+1) + "," + (y+1) + ") n'est pas tangente a une piece enemie.\nVeuillez essayer une autre case (joueur "+ joueur.getName() +"): ");
-			}
-		} else { 
-			System.out.print("Ops! La case (" + (x+1) + "," + (y+1) + ") est deja occupee.\nVeuillez essayer une autre case (joueur "+ joueur.getName() +"): ");
-		}
-		return res;
-	}
-
-	public boolean poserPion(Joueur joueur) {
-		int x = scanner.nextInt() - 1;
-		int y = scanner.nextInt() - 1;
-
-		while(x > this.plateau.length-1 || x<0 || y > this.plateau[0].length-1 || y<0) {
-			System.out.println("Position hors du plateau, veuillez choisir une autre position: ");
-			x = scanner.nextInt() - 1;
-			y = scanner.nextInt() - 1;
-		}
-
-		return this.poserPion(joueur, x, y);
-	}
 	public void nukeDestruction(){
 		for(int ligne = 0; ligne<plateau.length; ligne++){
 			for(int col = 0; col<plateau[ligne].length;col++){
@@ -191,4 +213,3 @@ public class JeuOthello {
 		print.affichagePlateau();	
 	}
 }
-
