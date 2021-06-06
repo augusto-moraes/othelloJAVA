@@ -6,9 +6,11 @@ public class MenuOthello{
 	 */
 	private char[][] tabAffichageMenu;
 	private JeuOthello jeu;
+	private int tailleJeu;
 	
 	public MenuOthello(){
 		this.tabAffichageMenu = new char[45][71];
+		tailleJeu = 8;
 	}
 	/**
 	 *Cette méthode permet d'inscrire dans le tableau d'affichage du menu la lettre O du mot othello
@@ -222,6 +224,96 @@ public class MenuOthello{
 		}
 			
 	}
+	public void selectionTailleTableau(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ',' ','1','.',' ','T','a','i','l','l','e',' ',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 15;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	public void selectionRetourOptions(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ',' ','2','.',' ','R','e','t','o','u','r',' ',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 15;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	public void titreOptions(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ','1','.',' ','P','l','a','y','e','r',' ','V','S',' ','P','l','a','y','e','r',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 23;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	public void selectionPlayerVSPlayer(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ','1','.',' ','P','l','a','y','e','r',' ','V','S',' ','P','l','a','y','e','r',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 23;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	public void selectionPlayerVSMachine(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ','2','.','P','l','a','y','e','r',' ','V','S',' ','M','a','c','h','i','n','e',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 23;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
+	public void selectionRetour(int x, int y){
+		char[] lettre = 
+			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
+			'|',' ',' ','T','a','i','l','l','e',' ','d','u',' ','t','a','b','l','e','a','u',' ',' ','|',
+			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
+		int i = 0;
+		for(int ligne = 0; ligne<3; ligne++){
+			for(int col = 0; col< 23;col++){
+				tabAffichageMenu[x+ligne][y+col]=lettre[i];
+				i++;
+			}
+			System.out.println();
+		}
+			
+	}
 	/**
 	 *Cette méthode permet d'inscrire dans le tableau d'affichage le contour en tiret qui définie l'encadrement du menu
 	 */
@@ -245,16 +337,57 @@ public class MenuOthello{
 		int ent = saisieUtilisateur.nextInt();
 		if(ent == 1){
 			// to implement: choisir la taille du plateau
-			this.jeu = new JeuOthello(4);
-			this.jeu.startGame();
+			this.affichageMenuSelectionMode();
 		}else if(ent == 2){
 			this.menuOption();
 		}else if(ent == 3){
 			this.menuRegle();
 		}else if(ent == 4){
 			this.menuScore();
+		}else{
+			System.out.println("Mais, tu sais lire ?");
+			this.orientationMenu();
 		}
-		return ent < 4;
+		return ent<4;
+	}
+	public boolean orientationModeJeu(){
+		Scanner saisieUtilisateur = new Scanner(System.in);
+		System.out.println("Quel mode de jeu veux-tu essayer ?");
+		int ent = saisieUtilisateur.nextInt();
+		if(ent == 1){
+			// to implement: choisir la taille du plateau
+			this.jeu = new JeuOthello(tailleJeu);
+			this.jeu.startGame();
+		}else if(ent == 2){
+			this.jeu = new JeuOthello(tailleJeu);
+			this.jeu.startGame();
+		}else if(ent == 3){
+			this.affichageMenuPrincipale();
+		}else{
+			System.out.println("Mais, tu sais lire ?");
+			this.orientationModeJeu();
+		}
+		return ent<4;
+	}
+	public boolean orientationOptions(){
+		Scanner saisieUtilisateur = new Scanner(System.in);
+		System.out.println("Quelle option choisit-tu ? ?");
+		int ent = saisieUtilisateur.nextInt();
+		if(ent == 1){
+			setTailleTableau();
+		}else if(ent == 2){
+			this.affichageMenuPrincipale();
+		}else{
+			System.out.println("Mais, tu sais lire ?");
+			this.orientationOptions();
+		}
+		return ent<3;
+	}
+	public void setTailleTableau(){
+		Scanner saisieUtilisateur = new Scanner(System.in);
+		System.out.println("Quelle taille de plateau veut-tu ?");
+		tailleJeu = saisieUtilisateur.nextInt();
+		this.affichageMenuPrincipale();
 	}
 	/**
 	 *Cette méthode permet d'afficher le menu score. Ici est affiché les 3 parties les plus rapides qui ne seront pas actualisés 
@@ -287,18 +420,20 @@ public class MenuOthello{
 	 *Cette méthode permet d'afficher le menu options qui est juste là pour que se soit mieux
 	 */
 	public void menuOption(){
-		System.out.println("En faît, on n'a pas mis d'options dans le jeu, mais on a fait un menu options pour que le programme soit stylé");
-		System.out.println("");
-		System.out.println("");
-		Scanner saisieUtilisateur = new Scanner(System.in);
-		System.out.println("Donc si tu veux retourner au menu principal, écrit 1");
-		int ent = saisieUtilisateur.nextInt();
-		while(ent != 1){
-			System.out.println("C'est 1 que tu dois mettre pour revenir au menu principal");
-			ent = saisieUtilisateur.nextInt();
+		tabAffichageMenu = new char[40][50];
+		this.contour();
+		this.selectionRetour(5,13);
+		this.selectionTailleTableau(20,17);
+		this.selectionRetourOptions(30,17);
+
+		for(int ligne = 0; ligne<tabAffichageMenu.length; ligne++){
+			for(int col = 0; col<tabAffichageMenu[ligne].length;col++){
+				System.out.print(tabAffichageMenu[ligne][col]);	
+				
+			}
+			System.out.println();
 		}
-		this.affichageMenuPrincipale();
-	
+		this.orientationOptions();
 	}
 	/**
 	 *Cette méthode permet d'afficher les règles du jeu pour que le joueur puisse jouer dans les meilleurs conditions
@@ -348,6 +483,7 @@ public class MenuOthello{
 	 *Cette méthode permet d'afficher le menu principale avec écrit en haut "OTHELLO" et les différents menus
 	 */	
 	public boolean affichageMenuPrincipale(){
+		tabAffichageMenu = new char[45][71];
 		this.contour();
 		this.lettreO(2,9);
 		this.lettreT(2,16);
@@ -369,6 +505,21 @@ public class MenuOthello{
 			System.out.println();
 		}
 		return this.orientationMenu();
+	}
+	public boolean affichageMenuSelectionMode(){
+		tabAffichageMenu = new char[40][50];
+		this.contour();
+		selectionPlayerVSMachine(20,13);
+		selectionPlayerVSPlayer(10,13);
+		selectionRetour(30,13);
+		for(int ligne = 0; ligne<tabAffichageMenu.length; ligne++){
+			for(int col = 0; col<tabAffichageMenu[ligne].length;col++){
+				System.out.print(tabAffichageMenu[ligne][col]);	
+				
+			}
+			System.out.println();
+		}
+		return this.orientationModeJeu();
 	}
 	
 
