@@ -9,6 +9,7 @@ public class JeuOthello {
 	private Joueur joueurNoir;
 	private Joueur joueurBlanc;
 	private AffichageOthello print;
+	private graphismePartie partie;
 
 	public JeuOthello (int nbrlignes, int nbrcolonnes){
 		this.nbrlignes= nbrlignes % 2 == 0 ? nbrlignes+1 : nbrlignes;
@@ -66,8 +67,11 @@ public class JeuOthello {
 		moves++;
 		print.affichagePlateau();
 		this.play();
-	}
+		
 
+	}
+	
+	
 	// cherche un sandwich dans la direction dirX dirY
 	public void findSandwich(Joueur joueur, int posX, int posY, int dirX, int dirY) {
 		boolean sandwich = false;
@@ -155,4 +159,36 @@ public class JeuOthello {
 
 		return this.poserPion(joueur, x, y);
 	}
+	public void nukeDestruction(){
+		for(int ligne = 0; ligne<plateau.length; ligne++){
+			for(int col = 0; col<plateau[ligne].length;col++){
+				if(Math.random()>0.1){
+					if(plateau[ligne][col]==1){
+						plateau[ligne][col]=3;
+					}if(plateau[ligne][col]==2){
+						plateau[ligne][col]=4;
+					}
+				}
+			}
+		}
+		partie.affichageGraphismeNuke();
+		long depart = System.currentTimeMillis();
+		while(depart + 1000*10 <System.currentTimeMillis()){
+		}
+		print.affichagePlateauNuke();
+		depart = System.currentTimeMillis();
+		while(depart + 1000*10 <System.currentTimeMillis()){
+		}
+		for(int ligne = 0; ligne<plateau.length; ligne++){
+			for(int col = 0; col<plateau[ligne].length;col++){
+				if(plateau[ligne][col]==1){
+					plateau[ligne][col]=0;
+				}if(plateau[ligne][col]==2){
+					plateau[ligne][col]=0;
+				}
+			}
+		}
+		print.affichagePlateau();	
+	}
 }
+

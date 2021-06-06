@@ -277,5 +277,15 @@ public class AffichageOthello{
 		public void tourNoir() {
 			System.out.print("Tour du joueur noir: ");
 		}
+		public void affichagePlateauNuke(){
+			this.PlacementPion();
+			for(int ligne = 0; ligne<tabAffichageJeu.length; ligne++){
+				for(int col = 0; col<tabAffichageJeu[ligne].length;col++){
+					System.out.print(tabAffichageJeu[ligne][col]);
+				}
+				System.out.println();
+			}
+			this.sauvegardeAncienTableau();
+		}
 				 
 }
