@@ -175,7 +175,7 @@ public class MenuOthello{
 	public void selection3(int x, int y){
 		char[] lettre = 
 			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ',' ','3','.','R','e','g','l','e',' ',' ',' ','|',
+			'|',' ',' ','3','.','R','e','g','l','e','s',' ',' ',' ','|',
 			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
@@ -210,7 +210,7 @@ public class MenuOthello{
 	public void selection5(int x, int y){
 		char[] lettre = 
 			{'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',
-			'|',' ',' ','5','.',' ','S','o','r','t','i','r',' ',' ','|',
+			'|',' ',' ','5','.','S','o','r','t','i','r',' ',' ',' ','|',
 			'-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',};
 		int i = 0;
 		for(int ligne = 0; ligne<3; ligne++){
@@ -245,7 +245,7 @@ public class MenuOthello{
 		int ent = saisieUtilisateur.nextInt();
 		if(ent == 1){
 			// to implement: choisir la taille du plateau
-			this.jeu = new JeuOthello(8);
+			this.jeu = new JeuOthello(4);
 			this.jeu.startGame();
 		}else if(ent == 2){
 			this.menuOption();
