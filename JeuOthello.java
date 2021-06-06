@@ -9,7 +9,7 @@ public class JeuOthello {
 	private Joueur joueurNoir;
 	private Joueur joueurBlanc;
 	private AffichageOthello print;
-	private graphismePartie partie;
+	private GraphismePartie partie;
 
 	public JeuOthello (int nbrlignes, int nbrcolonnes){
 		this.nbrlignes= nbrlignes % 2 == 0 ? nbrlignes+1 : nbrlignes;
