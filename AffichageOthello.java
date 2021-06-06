@@ -108,20 +108,12 @@ public class AffichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = 'N';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = 'N';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
-				}
-				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
 					tabAffichageJeu[l][newCoord[1]+2] = '|';
-				}
 			}
 			for(int c = newCoord[1]-1; c<=newCoord[1]+2; c++){
-				if(tabAffichageJeu[newCoord[0]-1][c] != '#'){
 					tabAffichageJeu[newCoord[0]-1][c] = '-';
-				}
-				if(tabAffichageJeu[newCoord[0]+2][c] != '#'){
 					tabAffichageJeu[newCoord[0]+2][c] = '-';
-				}
 			}
 		}
 		/**
@@ -136,20 +128,12 @@ public class AffichageOthello{
 			tabAffichageJeu[newCoord[0]][newCoord[1]+1] = 'B';
 			tabAffichageJeu[newCoord[0]+1][newCoord[1]+1] = 'B';
 			for(int l = newCoord[0]-1; l<newCoord[0]+2; l++){
-				if(tabAffichageJeu[l][newCoord[1]-1] != '#'){
 					tabAffichageJeu[l][newCoord[1]-1] = '|';
-				}
-				if(tabAffichageJeu[l][newCoord[1]+2] != '#'){
 					tabAffichageJeu[l][newCoord[1]+2] = '|';
-				}
 			}
 			for(int c = newCoord[1]-1; c<=newCoord[1]+2; c++){
-				if(tabAffichageJeu[newCoord[0]-1][c] != '#'){
 					tabAffichageJeu[newCoord[0]-1][c] = '-';
-				}
-				if(tabAffichageJeu[newCoord[0]+2][c] != '#'){
 					tabAffichageJeu[newCoord[0]+2][c] = '-';
-				}
 			}
 		
 		}
@@ -271,7 +255,7 @@ public class AffichageOthello{
 		}
 
 		public void tourJoueur(Joueur joueur) {
-			System.out.print("Tour du joueur " + joueur.getName() +": ");
+			System.out.print("Tour du joueur " + joueur.getName() +" (ligne, colonne): ");
 		}
 
 		public void affichagePlateauNuke(){

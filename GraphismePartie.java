@@ -269,7 +269,7 @@ public class GraphismePartie{
 		lettreINoir(3,27);
 		lettreR(3,38);
 		}
-		if(gagnant==2){
+		if(gagnant== 2){
 		lettreW(3,2);
 		lettreH(3,25);
 		lettreIBlanc(3,35);
