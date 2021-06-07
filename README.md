@@ -4,11 +4,11 @@ Bienvenue sur notre jeu Othello JAVA Edition ! Vous trouverez dans cette notice 
 
 ## L’installation et le démarrage du jeu : 
 
-### Installation par zip:
+### Installation par fichier zip:
 Il faut extraire le fichier Zip dans un dossier et laisser tous les fichiers dans ce dossier (si installé par zip). Il ne faut surtout pas separer ces fichiers.
 Vous pouvez aller ensuite dans l’invite de commande, et ouvrir le dossier othelloJAVA. Puis, entrer la commande javac @sources.txt afin de compiler l’ensemble des classes qui composent le jeu. Vous devrez ensuite exécuter la classe main avec java Main et le jeu s’ouvrira dans l’invite de commande.
 
-### Installation par git clone (il faut avoir git installé sur la machine):
+### Installation avec git clone (il faut déjà avoir git installé sur la machine):
 Il suffit de faire `git clone https://github.com/augusto-moraes/othelloJAVA.git` dans l'invite de commande, entrer dans le fichier avec `cd othelloJAVA`, puis entrer la commande `javac @sources.txt` afin de compiler l’ensemble des classes qui composent le jeu. Vous devrez ensuite exécuter la classe main avec `java Main` et le jeu s’ouvrira dans l’invite de commande. 
 
 ## Jouer : 
